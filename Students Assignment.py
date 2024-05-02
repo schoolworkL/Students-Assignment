@@ -52,9 +52,10 @@ class Search:
     def binary_search(list, low, high, name):
         if high >= low:  # checks if the ceiling of the list is greater than or equal to the floor of the list
             mid = (high + low) // 2  # gets the middle value using floor division
-            if list[mid][1] == name:  # checks if the middle value is the input value
+            mid_value = str(list[mid][1])  # holds the value of the mid last name, but in string format.
+            if mid_value.casefold() == name.casefold():  # checks if the middle value is the input value
                 return mid  # returns the tuple to the search function
-            elif list[mid][1] > name:  # checks if the input value is below the middle value
+            elif mid_value.casefold() > name.casefold():  # checks if the input value is below the middle value
                 return Search.binary_search(list, low, mid-1, name)  # runs the binary_search function with a new range for the list of data
             else:  # the input value must be above the middle value
                 return Search.binary_search(list, mid+1, high, name)  # runs the binary_search function with a new range for the list of data
