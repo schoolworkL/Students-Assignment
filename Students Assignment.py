@@ -39,6 +39,18 @@ def search(list):
             print("Invalid input!")  # error message
     return Search.binary_search(list, 0, len(list)-1, name)  # runs the function to search through the data
 
+# checks the result of the search and displays an output
+# @param list - holds the sorted list of tuples
+def find_result(list):
+    while True:
+        result = search(list)  # stores the result of searching for a name
+
+        if result == -1:  # if result == -1, then the name was not in the data
+            print('No Result')
+        else:
+            print(
+                f'First Name: {s_list[result][0]}\nLast Name: {s_list[result][1]}\nAverage: {s_list[result][2]}')  # prints the data
+
 # class for searching for user input in data
 class Search:
     # Search for an last name input in the data from the file
@@ -67,10 +79,4 @@ class Search:
 data = read_file() # gets the data from the file
 s_list = sorter(data)  # sorts the data
 print(*[' '.join(i) for i in s_list], sep='\n')  # prints each tuple on an individual line
-while True:
-    result = search(s_list)  # stores the result of searching for a name
-
-    if result == -1:  # if result == -1, then the name was not in the data
-        print('No Result')
-    else:
-        print(f'First Name: {s_list[result][0]}\nLast Name: {s_list[result][1]}\nAverage: {s_list[result][2]}')  # prints the data
+find_result(s_list) # displays the result of the search
