@@ -27,26 +27,6 @@ def sorter(list):
         list[j], list[value] = list[value], list[j]  # switches the values of list[j] and list[value]
     return list  # returns the sorted list to the main
 
-# Search for an last name input in the data from the file
-# @param list - holds the data in tuples in a list
-# @param low - the bottom extent of the data to be analyzed
-# @param high - the top extent of the data to be analyzed
-# @param name - the input value(last name)
-# @return binary_search(list, mid+1, high, name) - runs the binary_search function with a new low value
-# @return binary_search(list, low, mid-1, name) - runs the binary_search function with a new high value
-# @return -1 - returns the value of -1 to the main. Tells the main that the input was not found in the data
-def binary_search(list, low, high, name):
-    if high >= low:  # checks if the ceiling of the list is greater than or equal to the floor of the list
-        mid = (high + low) // 2  # gets the middle value using floor division
-        if list[mid][1] == name:  # checks if the middle value is the input value
-            return mid  # returns the tuple to the search function
-        elif list[mid][1] > name:  # checks if the input value is below the middle value
-            return binary_search(list, low, mid-1, name)  # runs the binary_search function with a new range for the list of data
-        else:  # the input value must be above the middle value
-            return binary_search(list, mid+1, high, name)  # runs the binary_search function with a new range for the list of data
-    else:
-        return -1  # returns the not present value
-
 # User inputs a last name, then the search function is returned to the main
 # @param list - holds the data in tuples within a list
 # @return binary_search(list, 0, len(list)-1, name) - runs the binary_search function with the list of data, range of data, and input value
@@ -57,8 +37,28 @@ def search(list):
             break  # breaks the loop after a good input
         except:
             print("Invalid input!")  # error message
-    return binary_search(list, 0, len(list)-1, name)  # runs the function to search through the data
+    return Search.binary_search(list, 0, len(list)-1, name)  # runs the function to search through the data
 
+class Search:
+    # Search for an last name input in the data from the file
+    # @param list - holds the data in tuples in a list
+    # @param low - the bottom extent of the data to be analyzed
+    # @param high - the top extent of the data to be analyzed
+    # @param name - the input value(last name)
+    # @return binary_search(list, mid+1, high, name) - runs the binary_search function with a new low value
+    # @return binary_search(list, low, mid-1, name) - runs the binary_search function with a new high value
+    # @return -1 - returns the value of -1 to the main. Tells the main that the input was not found in the data
+    def binary_search(list, low, high, name):
+        if high >= low:  # checks if the ceiling of the list is greater than or equal to the floor of the list
+            mid = (high + low) // 2  # gets the middle value using floor division
+            if list[mid][1] == name:  # checks if the middle value is the input value
+                return mid  # returns the tuple to the search function
+            elif list[mid][1] > name:  # checks if the input value is below the middle value
+                return Search.binary_search(list, low, mid-1, name)  # runs the binary_search function with a new range for the list of data
+            else:  # the input value must be above the middle value
+                return Search.binary_search(list, mid+1, high, name)  # runs the binary_search function with a new range for the list of data
+        else:
+            return -1  # returns the not present value
 
 # main
 
