@@ -39,6 +39,7 @@ def search(list):
             print("Invalid input!")  # error message
     return Search.binary_search(list, 0, len(list)-1, name)  # runs the function to search through the data
 
+# class for searching for user input in data
 class Search:
     # Search for an last name input in the data from the file
     # @param list - holds the data in tuples in a list
