@@ -64,6 +64,7 @@ def search(list):
 
 data = read_file() # gets the data from the file
 s_list = sorter(data)  # sorts the data
+print(*[' '.join(i) for i in s_list], sep='\n')  # prints each tuple on an individual line
 while True:
     result = search(s_list)  # stores the result of searching for a name
 
