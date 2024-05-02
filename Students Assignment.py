@@ -37,7 +37,7 @@ def search(list):
             break  # breaks the loop after a good input
         except:
             print("Invalid input!")  # error message
-    return Search.binary_search(list, 0, len(list)-1, name)  # runs the function to search through the data
+    return Search.binary_search(0, len(list)-1, name)  # runs the function to search through the data
 
 # checks the result of the search and displays an output
 # @param list - holds the sorted list of tuples
@@ -53,24 +53,24 @@ def find_result(list):
 
 # class for searching for user input in data
 class Search:
+    global s_list  # gets the sorted list
     # Search for an last name input in the data from the file
-    # @param list - holds the data in tuples in a list
     # @param low - the bottom extent of the data to be analyzed
     # @param high - the top extent of the data to be analyzed
     # @param name - the input value(last name)
-    # @return binary_search(list, mid+1, high, name) - runs the binary_search function with a new low value
-    # @return binary_search(list, low, mid-1, name) - runs the binary_search function with a new high value
+    # @return binary_search(mid+1, high, name) - runs the binary_search function with a new low value
+    # @return binary_search(low, mid-1, name) - runs the binary_search function with a new high value
     # @return -1 - returns the value of -1 to the main. Tells the main that the input was not found in the data
-    def binary_search(list, low, high, name):
+    def binary_search(low, high, name):
         if high >= low:  # checks if the ceiling of the list is greater than or equal to the floor of the list
             mid = (high + low) // 2  # gets the middle value using floor division
-            mid_value = str(list[mid][1])  # holds the value of the mid last name, but in string format.
+            mid_value = str(s_list[mid][1])  # holds the value of the mid last name, but in string format.
             if mid_value.casefold() == name.casefold():  # checks if the middle value is the input value
                 return mid  # returns the tuple to the search function
             elif mid_value.casefold() > name.casefold():  # checks if the input value is below the middle value
-                return Search.binary_search(list, low, mid-1, name)  # runs the binary_search function with a new range for the list of data
+                return Search.binary_search(low, mid-1, name)  # runs the binary_search function with a new range for the list of data
             else:  # the input value must be above the middle value
-                return Search.binary_search(list, mid+1, high, name)  # runs the binary_search function with a new range for the list of data
+                return Search.binary_search(mid+1, high, name)  # runs the binary_search function with a new range for the list of data
         else:
             return -1  # returns the not present value
 
