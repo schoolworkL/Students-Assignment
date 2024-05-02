@@ -44,7 +44,6 @@ def search(list):
 def find_result(list):
     while True:
         result = search(list)  # stores the result of searching for a name
-
         if result == -1:  # if result == -1, then the name was not in the data
             print('No Result')
         else:
